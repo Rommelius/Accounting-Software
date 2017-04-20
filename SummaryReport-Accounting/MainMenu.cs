@@ -51,72 +51,76 @@ namespace SummaryReport_Accounting
 
         private void _addItemButton_Click(object sender, EventArgs e)
         {
-            double _GSTAmount, _doubleItemAmount;
-            if (_itemAmount.Text == "" || _itemList.SelectedItem == null)
-            {
-                MetroFramework.MetroMessageBox.Show(this, "", "Please fill in the details", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            else
-            {
-                if (_gstCheckbox.Checked)
-                {
-                    double.TryParse(_itemAmount.Text, out _GSTAmount);
-                    _GSTAmount = (_GSTAmount / 100) * 10;
-                }
-                else
-                {
-                    _GSTAmount = 0.00;
-                }
-
-                if (_itemAmount.Text == "")
-                {
-                    _itemAmount.Text = "0.00";
-                }
-                double.TryParse(_itemAmount.Text, out _doubleItemAmount);
-
-                ItemInfo item = new ItemInfo()
-                {
-                    Item_Description = _itemList.Text,
-                    Amount = String.Format("{0:C}", _doubleItemAmount),
-                    GST = String.Format("{0:C}", _GSTAmount),
-                };
-                listItem.Add(item);
-
-                _dataGridView.DataSource = null;
-                _dataGridView.DataSource = listItem;
-
-                DataGridViewColumn column1 = _dataGridView.Columns[0];
-                column1.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-                column1.HeaderText = "Item Description";
+            this.tableBindingSource.AddNew();
 
 
-                DataGridViewColumn column2 = _dataGridView.Columns[1];
-                column2.Width = 150;
-                DataGridViewColumn column3 = _dataGridView.Columns[2];
-                column3.Width = 150;
+            //double _GSTAmount, _doubleItemAmount;
+            //if (_itemAmount.Text == "" || _itemList.SelectedItem == null)
+            //{
+            //    MetroFramework.MetroMessageBox.Show(this, "", "Please fill in the details", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //}
+            //else
+            //{
+            //    if (_gstCheckbox.Checked)
+            //    {
+            //        double.TryParse(_itemAmount.Text, out _GSTAmount);
+            //        _GSTAmount = (_GSTAmount / 100) * 10;
+            //    }
+            //    else
+            //    {
+            //        _GSTAmount = 0.00;
+            //    }
 
-                _totalAmountExpenses.Text = String.Format("{0:C}", _dataGridView.Rows.Cast<DataGridViewRow>()
-                .Sum(
-                    t => double.Parse(t.Cells[1].Value.ToString(), NumberStyles.Currency)
+            //    if (_itemAmount.Text == "")
+            //    {
+            //        _itemAmount.Text = "0.00";
+            //    }
+            //    double.TryParse(_itemAmount.Text, out _doubleItemAmount);
 
-                    ));
+            //    ItemInfo item = new ItemInfo()
+            //    {
+            //        Item_Description = _itemList.Text,
+            //        Amount = String.Format("{0:C}", _doubleItemAmount),
+            //        GST = String.Format("{0:C}", _GSTAmount),
+            //    };
+            //    listItem.Add(item);
 
-                _totalGST.Text = String.Format("{0:C}", _dataGridView.Rows.Cast<DataGridViewRow>()
-                .Sum(
-                    t => double.Parse(t.Cells[2].Value.ToString(), NumberStyles.Currency)
 
-                    ));
+            //    //_dataGridView.DataSource = null;
+            //    //_dataGridView.DataSource = listItem;
 
-                _totalAmountExpenseswithGST.Text = String.Format("{0:C}", _dataGridView.Rows.Cast<DataGridViewRow>()
-                .Sum(
-                    t => double.Parse(t.Cells[1].Value.ToString(), NumberStyles.Currency) + double.Parse(t.Cells[2].Value.ToString(), NumberStyles.Currency)
+            //    //DataGridViewColumn column1 = _dataGridView.Columns[0];
+            //    //column1.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            //    //column1.HeaderText = "Item Description";
 
-                    ));
 
-                _itemList.SelectedItem = null;
-                _itemAmount.Text = "";
-                _gstCheckbox.Checked = false;
-            }
+            //    //DataGridViewColumn column2 = _dataGridView.Columns[1];
+            //    //column2.Width = 150;
+            //    //DataGridViewColumn column3 = _dataGridView.Columns[2];
+            //    //column3.Width = 150;
+
+            //    _totalAmountExpenses.Text = String.Format("{0:C}", _dataGridView.Rows.Cast<DataGridViewRow>()
+            //    .Sum(
+            //        t => double.Parse(t.Cells[1].Value.ToString(), NumberStyles.Currency)
+
+            //        ));
+
+            //    _totalGST.Text = String.Format("{0:C}", _dataGridView.Rows.Cast<DataGridViewRow>()
+            //    .Sum(
+            //        t => double.Parse(t.Cells[2].Value.ToString(), NumberStyles.Currency)
+
+            //        ));
+
+            //    _totalAmountExpenseswithGST.Text = String.Format("{0:C}", _dataGridView.Rows.Cast<DataGridViewRow>()
+            //    .Sum(
+            //        t => double.Parse(t.Cells[1].Value.ToString(), NumberStyles.Currency) + double.Parse(t.Cells[2].Value.ToString(), NumberStyles.Currency)
+
+            //        ));
+
+            //    _itemList.SelectedItem = null;
+            //    _itemAmount.Text = "";
+            //    _gstCheckbox.Checked = false;
+            //}
         }
 
         private void _deleteItemButton_Click(object sender, EventArgs e)
@@ -125,18 +129,18 @@ namespace SummaryReport_Accounting
 
             listItem.RemoveAt(index);
 
-            _dataGridView.DataSource = null;
-            _dataGridView.DataSource = listItem;
+            //_dataGridView.DataSource = null;
+            //_dataGridView.DataSource = listItem;
 
-            DataGridViewColumn column1 = _dataGridView.Columns[0];
-            column1.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            column1.HeaderText = "Item Description";
+            //DataGridViewColumn column1 = _dataGridView.Columns[0];
+            //column1.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            //column1.HeaderText = "Item Description";
 
 
-            DataGridViewColumn column2 = _dataGridView.Columns[1];
-            column2.Width = 150;
-            DataGridViewColumn column3 = _dataGridView.Columns[2];
-            column3.Width = 150;
+            //DataGridViewColumn column2 = _dataGridView.Columns[1];
+            //column2.Width = 150;
+            //DataGridViewColumn column3 = _dataGridView.Columns[2];
+            //column3.Width = 150;
 
             _totalAmountExpenses.Text = String.Format("{0:C}", _dataGridView.Rows.Cast<DataGridViewRow>()
             .Sum(
@@ -242,6 +246,9 @@ namespace SummaryReport_Accounting
             DialogResult result = MetroFramework.MetroMessageBox.Show(this, "", "Would you like to print the report?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result == DialogResult.Yes)
             {
+
+               
+                printDocument1.PrinterSettings.PrintFileName = "test123.pdf";
                 printDocument1.Print();
             }
 
@@ -273,6 +280,29 @@ namespace SummaryReport_Accounting
                 listItemNames.Clear();
                 loadItemNames();
             }
+        }
+
+        private void tableBindingNavigatorSaveItem_Click(object sender, EventArgs e)
+        {
+            this.Validate();
+            this.tableBindingSource.EndEdit();
+            this.tableAdapterManager.UpdateAll(this.dailyDBDataSet);
+
+        }
+
+        private void tableBindingNavigatorSaveItem_Click_1(object sender, EventArgs e)
+        {
+            this.Validate();
+            this.tableBindingSource.EndEdit();
+            this.tableAdapterManager.UpdateAll(this.dailyDBDataSet);
+
+        }
+
+        private void MainMenu_Load(object sender, EventArgs e)
+        {
+            // TODO: This line of code loads data into the 'dailyDBDataSet.Table' table. You can move, or remove it, as needed.
+            this.tableTableAdapter.Fill(this.dailyDBDataSet.Table);
+
         }
     }
 }
